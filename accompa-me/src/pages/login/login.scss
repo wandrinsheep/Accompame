@@ -1,0 +1,21 @@
+page-login {
+    .center {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.no-scroll {
+    scroll-content {
+        overflow-y: hidden;
+    }
+}
+
+.scroll {
+    scroll-content {
+        overflow-y: scroll;
+    }
+}
