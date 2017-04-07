@@ -1,22 +1,28 @@
+import { NavController } from 'ionic-angular';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
 
-/*
-  Generated class for the Login page.
+import { TabsPage } from '../tabs/tabs';
+import { AuthProvider } from '../../providers/auth';
 
-  See http://ionicframework.com/docs/v2/components/#navigation for more info on
-  Ionic pages and navigation.
-*/
 @Component({
-  selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
+  selector: 'auth-login',
 })
+
 export class LoginPage {
+  error: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(private navCtrl: NavController, private auth: AuthProvider) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  ngOnInit() {
+
   }
 
+  loginUserWithFacebook() {
+    this.auth.loginWithFacebook().subscribe(data => {
+      this.navCtrl.setRoot(TabsPage);
+    }, err => {
+      this.error = err;
+    });
+  }
 }
