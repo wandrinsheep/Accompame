@@ -27,6 +27,7 @@ export class AuthProvider {
             console.log(userData);
             this.user = userData;
             observer.next(userData);
+            
           });
         } else {
           observer.error();

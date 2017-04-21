@@ -51,7 +51,9 @@
         "APP_ID": "172308433285968",
         "APP_NAME": "Accompa-me"
       }
-    }
+    },
+    "cordova-plugin-network-information",
+    "cordova-plugin-geolocation"
   ],
   "cordovaPlatforms": [],
   "description": "accompa-me: An Ionic project"
