@@ -7,6 +7,7 @@ import { LoginPage } from '../pages/login/login';
 
 import { DataProvider } from '../providers/data';
 import { AuthProvider } from '../providers/auth';
+import { AngularFire } from "angularfire2";
 
 @Component({
   templateUrl: 'app.html'
@@ -18,12 +19,26 @@ export class MyApp {
   user: any;
   rootPage: any = LoginPage;
   
-  constructor( private platform: Platform,protected data: DataProvider,protected auth: AuthProvider) 
+  constructor( private platform: Platform,protected data: DataProvider,protected auth: AuthProvider, af:AngularFire) 
   {
-    this.user = {image: ''};
+  //  this.user = {image: ''};
+    af.auth.subscribe(data =>{
+    if(data){
+      this.rootPage = TabsPage;
+      console.log(data);
+    }
+  else{
+    this.rootPage = LoginPage;
+    console.log('data');
+  }
+    })
+    
   }
 
   ngOnInit() {
+    this.platform.ready();
+    StatusBar.styleDefault();
+    /*
     this.platform.ready().then(() => {
       this.auth.getUserData().subscribe(data => {
         if (!this.isAppInitialized) {
@@ -38,7 +53,7 @@ export class MyApp {
         this.rootPage(LoginPage);
       });
       StatusBar.styleDefault();
-    });
+    });*/
   }
 }
 

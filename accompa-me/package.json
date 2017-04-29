@@ -26,6 +26,7 @@
     "@ionic/storage": "2.0.0",
     "angularfire2": "^2.0.0-beta.8",
     "firebase": "^3.7.5",
+    "geofire": "^4.1.2",
     "ionic-angular": "2.3.0",
     "ionic-native": "^2.9.0",
     "ionicons": "3.0.0",

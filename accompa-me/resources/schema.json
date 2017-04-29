@@ -1,0 +1,51 @@
+{
+    "users": {
+        "uid": {
+            "name": "",
+            "email": "",
+            "provider": "",
+            "image": "",
+            "friends": [],
+            "trustscore": ""
+        }
+    },
+    "profile": {
+        "uid": {
+            "profileid": "",
+            "image": "",
+            "numcompanies": "",
+            "reviews": {
+                "reviewid": ""
+            }
+        }
+    },
+    "reviews": {
+        "uid": {
+            "reviewid": "",
+            "review": "review",
+            "profileid": ""
+        }
+    },
+
+    "accompa-me": {
+        "accompid": {
+            "timestamp": "",
+            "destination": "",
+            "origin": "",
+            "meetuploc": "",
+            "groupsize": "",
+            "createdby": "",
+            "acceptedby": ""
+
+        }
+
+
+    },
+    "geolocation": {
+        "uid": {
+            "location": ""
+        }
+
+    }
+
+}

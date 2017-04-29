@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable, FirebaseAuthState } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import { Facebook } from 'ionic-native';
 import firebase from 'firebase';
@@ -10,8 +10,13 @@ import {DataProvider} from './data';
 
 @Injectable()
 export class AuthProvider {
-  user: any;
+  user: FirebaseObjectObservable<any>;
+  auth$: FirebaseAuthState;
+
   constructor(private af: AngularFire, private data: DataProvider, private platform: Platform) {
+      this.af.auth.subscribe(authdata => {
+      this.auth$ = authdata;
+    })
    /* this.af.database.list('pushTest').push({
       teste: 'teste'
     }).then((data) => {
@@ -19,6 +24,12 @@ export class AuthProvider {
     }); */
   }
 
+isAuthenticated(): Boolean{
+  console.log(this.auth$);
+   console.log(this.auth$ !==null);
+   return this.auth$ !== null;
+ 
+}
   getUserData() {
     return Observable.create(observer => {
       this.af.auth.subscribe(authData => {
