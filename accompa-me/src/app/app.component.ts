@@ -22,16 +22,19 @@ export class MyApp {
   constructor( private platform: Platform,protected data: DataProvider,protected auth: AuthProvider, af:AngularFire) 
   {
   //  this.user = {image: ''};
-    af.auth.subscribe(data =>{
-    if(data){
+    //af.auth.subscribe(data =>{
+  //  if(data)
+  if(!this.auth.isAuthenticated())
+  {
       this.rootPage = TabsPage;
+      console.log(this.auth.isAuthenticated());
       console.log(data);
     }
   else{
     this.rootPage = LoginPage;
     console.log('data');
   }
-    })
+   // })
     
   }
 

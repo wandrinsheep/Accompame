@@ -11,7 +11,7 @@ import {DataProvider} from './data';
 @Injectable()
 export class AuthProvider {
   user: FirebaseObjectObservable<any>;
-  auth$: FirebaseAuthState;
+  auth$: any;
 
   constructor(private af: AngularFire, private data: DataProvider, private platform: Platform) {
       this.af.auth.subscribe(authdata => {

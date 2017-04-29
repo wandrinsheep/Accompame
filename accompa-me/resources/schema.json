@@ -20,10 +20,10 @@
         }
     },
     "reviews": {
-        "uid": {
+        "profileid": {
             "reviewid": "",
             "review": "review",
-            "profileid": ""
+            "uid": ""
         }
     },
 
