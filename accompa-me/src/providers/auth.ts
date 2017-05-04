@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Platform } from 'ionic-angular';
-import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable, FirebaseAuthState } from 'angularfire2';
+import { AngularFire, AuthProviders, AuthMethods, FirebaseObjectObservable, FirebaseAuthState, FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import { Facebook } from 'ionic-native';
 import firebase from 'firebase';
@@ -17,6 +17,8 @@ export class AuthProvider {
       this.af.auth.subscribe(authdata => {
       this.auth$ = authdata;
     })
+    this.getUserData();
+    this.isAuthenticated();
    /* this.af.database.list('pushTest').push({
       teste: 'teste'
     }).then((data) => {
@@ -25,16 +27,17 @@ export class AuthProvider {
   }
 
 isAuthenticated(): Boolean{
-  console.log(this.auth$);
+    console.log(this.auth$);
    console.log(this.auth$ !==null);
    return this.auth$ !== null;
  
 }
+
   getUserData() {
     return Observable.create(observer => {
       this.af.auth.subscribe(authData => {
         if (authData) {
-          this.data.object('users/' + authData.uid).subscribe(userData => {
+          this.data.object('accompa-me/users ' + authData.uid).subscribe(userData => {
             console.log(userData);
             this.user = userData;
             observer.next(userData);
@@ -46,8 +49,6 @@ isAuthenticated(): Boolean{
       });
     });
   }
-
- 
 
   loginWithFacebook() {
       return Observable.create(observer => {
@@ -88,6 +89,14 @@ isAuthenticated(): Boolean{
 
 
   logout() {
+   this.af.auth.subscribe(data =>{
+      if(data){
+        this.af.database.list('/users').$ref.ref.child(data.uid).remove().then(data => {console.log('succesfully removed');});
+      }
+    }),
+    err => {console.log(err)};
+    
     this.af.auth.logout();
+ 
   }
 }

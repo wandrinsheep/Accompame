@@ -43,8 +43,16 @@
     },
     "geolocation": {
         "uid": {
-            "location": ""
+            "location": "",
+            "time": ""
+        },
+
+        "geofire": {
+            "key": {
+                "uid": []
+            }
         }
+
 
     }
 
