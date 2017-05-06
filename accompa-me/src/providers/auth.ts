@@ -10,7 +10,6 @@ import {DataProvider} from './data';
 
 @Injectable()
 export class AuthProvider {
-  user: FirebaseObjectObservable<any>;
   auth$: any;
 
   constructor(private af: AngularFire, private data: DataProvider, private platform: Platform) {
@@ -37,11 +36,9 @@ isAuthenticated(): Boolean{
     return Observable.create(observer => {
       this.af.auth.subscribe(authData => {
         if (authData) {
-          this.data.object('accompa-me/users ' + authData.uid).subscribe(userData => {
+          this.data.object('users/' + authData.uid).subscribe(userData => {
             console.log(userData);
-            this.user = userData;
             observer.next(userData);
-            
           });
         } else {
           observer.error();
@@ -91,7 +88,8 @@ isAuthenticated(): Boolean{
   logout() {
    this.af.auth.subscribe(data =>{
       if(data){
-        this.af.database.list('/users').$ref.ref.child(data.uid).remove().then(data => {console.log('succesfully removed');});
+        this.data.object('users/'+data.uid).remove().then(data => {console.log('succesfully removed')});
+        //this.af.database.list('users').$ref.ref.child(data.uid).remove().then(data => {console.log('succesfully removed');});
       }
     }),
     err => {console.log(err)};

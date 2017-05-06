@@ -11,22 +11,28 @@ import { DataProvider } from "../../providers/data";
 })
 export class AboutPage {
 
-users: FirebaseObjectObservable<any> ;
+users: FirebaseObjectObservable<any>;
 items : any;
   constructor(public navCtrl: NavController, private auth: AuthProvider, private af: AngularFire, private data:DataProvider) 
   {
-    this.items = this.af.database.list('/users');
+     this.items = this.af.database.object('users/x3cirdMgNhdnKRl5j4elOb08evP2');
+    
   }
 
   getdata(){
- 
-   }
-         
+     this.users = this.auth.getUserData();
+     
+        }
+
+  changeName(){
+      this.af.auth.subscribe(authData => {
+        if (authData) {
+    this.data.object('users/'+authData.uid).update({name: "John Wick"})
+  }
+      });
+  }
+
     
-  
-
-
-
  logout()
  {
    this.auth.logout();

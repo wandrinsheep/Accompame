@@ -16,7 +16,8 @@ import { AngularFireModule } from 'angularfire2';
 //providers
 import { DataProvider } from '../providers/data';
 import { AuthProvider } from '../providers/auth';
-import {ConnectivityService} from '../providers/connectivity-service';
+import { ConnectivityService } from '../providers/connectivity-service';
+import { LocationProvider } from "../providers/location";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBP9__r9I3MpOlLy4UWjQQLFLXyYfr-hjc",
@@ -51,7 +52,7 @@ export const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},DataProvider,AuthProvider,ConnectivityService
+    {provide: ErrorHandler, useClass: IonicErrorHandler},DataProvider,AuthProvider,ConnectivityService, LocationProvider
   ]
 })
 export class AppModule {}

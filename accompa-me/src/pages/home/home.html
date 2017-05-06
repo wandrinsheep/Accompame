@@ -5,5 +5,11 @@
 </ion-header>
 
 <ion-content>
+    <div class="locationFab">
+        <ion-fab>
+            <button ion-fab (click)="updateLoc()"><ion-icon name="locate"></ion-icon></button>
+        </ion-fab>
+    </div>
+
     <div #map id="map"></div>
 </ion-content>

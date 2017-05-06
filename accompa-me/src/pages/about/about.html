@@ -1,16 +1,14 @@
 <ion-header>
     <ion-navbar>
         <ion-title>
-            About
+            {{ (items | async)?.name }}
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-
-    <ul>
-        <li *ngFor="let item of items | async">
-            {{ item | json }}
-        </li>
-    </ul>
+    <button ion-button (click)="getdata()">{{ (items | async)?.name }}</button>
+    <button ion-button (click)="changeName()">change Name</button>
+    <h1>{{ (users | async)?.name}}</h1>
+    <button ion-button (click)="logout()">logout</button>
 </ion-content>

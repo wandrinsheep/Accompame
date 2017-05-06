@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ConnectivityService } from '../../providers/connectivity-service';
 import { Geolocation } from 'ionic-native';
+import { LocationProvider } from "../../providers/location";
 
 declare var google;
 
@@ -15,9 +16,9 @@ export class HomePage {
  
   map: any;
   mapInitialised: boolean = false;
-  apiKey: any;
+  apiKey: any = 'AIzaSyB5GBWNTdmMB7R7T2ntrpjTqK3kt8fPq5E';
  
-  constructor(public navCtrl: NavController, public connectivityService: ConnectivityService) {
+  constructor(public navCtrl: NavController, public connectivityService: ConnectivityService, private loc: LocationProvider) {
     
 
 }
@@ -125,6 +126,9 @@ ionViewDidLoad()
     document.addEventListener('online', onOnline, false);
     document.addEventListener('offline', onOffline, false);
  
+  }
+  updateLoc(){
+    console.log("location updated");
   }
  
 }
