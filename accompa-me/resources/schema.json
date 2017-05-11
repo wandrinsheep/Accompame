@@ -27,7 +27,7 @@
         }
     },
 
-    "accompa-me": {
+    "accompa-me event": {
         "accompid": {
             "timestamp": "",
             "destination": "",
@@ -41,7 +41,7 @@
 
 
     },
-    "geolocation": {
+    "geohistory": {
         "uid": {
             "location": "",
             "time": ""

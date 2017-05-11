@@ -1,8 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ConnectivityService } from '../../providers/connectivity-service';
-import { Geolocation } from 'ionic-native';
+import { Geolocation } from '@ionic-native/geolocation';
 import { LocationProvider } from "../../providers/location";
+import { AngularFire } from "angularfire2";
+import * as firebase from 'firebase';
 
 declare var google;
 
@@ -18,7 +20,7 @@ export class HomePage {
   mapInitialised: boolean = false;
   apiKey: any = 'AIzaSyB5GBWNTdmMB7R7T2ntrpjTqK3kt8fPq5E';
  
-  constructor(public navCtrl: NavController, public connectivityService: ConnectivityService, private loc: LocationProvider) {
+  constructor(public navCtrl: NavController, public connectivityService: ConnectivityService, /*private loc: LocationProvider,*/ private af: AngularFire, private gl: Geolocation) {
     
 
 }
@@ -72,24 +74,47 @@ ionViewDidLoad()
  
 }
  initMap(){
- 
-    this.mapInitialised = true;
- 
-    Geolocation.getCurrentPosition().then((position) => {
- 
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+
+      /* let latLng = new google.maps.LatLng(17.942539800000002,-77.233872);
+      
  
       let mapOptions = {
+        
         center: latLng,
         zoom: 15,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
  
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+      var marker1 = new google.maps.Marker({
+          position: latLng,
+          map: this.map,
+          title: 'Hello World!'
+        });*/
  
-    });
+        this.gl.getCurrentPosition((position) => {
  
-  }
+      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      
+ 
+      let mapOptions = {
+        
+        center: latLng,
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      }
+ 
+      this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+
+      var marker1 = new google.maps.Marker({
+          position: latLng,
+          map: this.map,
+          title: 'Hello World!'
+        });
+  });
+ }
+
+
   disableMap(){
     console.log("disable map");
   }
@@ -128,7 +153,33 @@ ionViewDidLoad()
  
   }
   updateLoc(){
-    console.log("location updated");
+    /* var marker1 = new google.maps.Marker({
+          position: latLng,
+          map: this.map,
+          title: 'Hello World!'
+        });
+*/
+
+        /*
+    this.af.auth.subscribe(data =>{
+      let latlng = this.loc.getFire(data.uid);
+     
+      latlng.then(res =>{
+        
+        console.log(res);
+        res[0] = res[0]+1;
+        res[1] = res[1]+3;
+          this.loc.setfire(data.uid,res);
+          console.log(res);
+      })
+     console.log(  latlng);
+             })
+   
+    console.log("location updated");*/
+    let locationref  = firebase.database().ref('geolocation').child('N4qvf138koWRdE0OH8pkfJOMfpS2').child('l').child('0');
+    locationref.transaction(locationdata =>{
+      return locationdata-1;
+    })
   }
  
 }

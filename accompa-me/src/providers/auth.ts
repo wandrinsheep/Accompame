@@ -86,13 +86,13 @@ isAuthenticated(): Boolean{
 
 
   logout() {
-   this.af.auth.subscribe(data =>{
+  /* this.af.auth.subscribe(data =>{
       if(data){
         this.data.object('users/'+data.uid).remove().then(data => {console.log('succesfully removed')});
         //this.af.database.list('users').$ref.ref.child(data.uid).remove().then(data => {console.log('succesfully removed');});
       }
     }),
-    err => {console.log(err)};
+    err => {console.log(err)};*/
     
     this.af.auth.logout();
  

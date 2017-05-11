@@ -6,6 +6,8 @@
     <content src="index.html" />
     <access origin="*" />
     <allow-navigation href="*" />
+    <allow-navigation href="http://192.168.100.5:8100" />
+    <allow-navigation href="http://192.168.100.6:8100" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
@@ -40,4 +42,5 @@
         <variable name="APP_ID" value="172308433285968" />
         <variable name="APP_NAME" value="Accompa-me" />
     </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="~2.4.2" />
 </widget>
