@@ -92,7 +92,7 @@ ionViewDidLoad()
           title: 'Hello World!'
         });*/
  
-        this.gl.getCurrentPosition((position) => {
+        this.gl.getCurrentPosition().then((position) => {
  
       let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
       
