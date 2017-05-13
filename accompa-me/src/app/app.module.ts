@@ -10,7 +10,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage} from '../pages/login/login';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import {Geolocation} from '@ionic-native/geolocation'
+import {Geolocation} from '@ionic-native/geolocation';
+import { Network } from '@ionic-native/network';
 
 import { AngularFireModule } from 'angularfire2';
 
@@ -19,6 +20,8 @@ import { DataProvider } from '../providers/data';
 import { AuthProvider } from '../providers/auth';
 import { ConnectivityService } from '../providers/connectivity-service';
 import { LocationProvider } from "../providers/location";
+import { GoogleMapProvider } from '../providers/google-map/google-map';
+import {LocationSelectPage} from '../pages/location-select/location-select';
 
 export const firebaseConfig = {
     apiKey: "AIzaSyBP9__r9I3MpOlLy4UWjQQLFLXyYfr-hjc",
@@ -35,7 +38,8 @@ export const firebaseConfig = {
     ContactPage,
     HomePage,
     LoginPage,
-    TabsPage
+    TabsPage,
+    LocationSelectPage
   ],
   imports: [
      IonicModule.forRoot(MyApp),
@@ -48,12 +52,13 @@ export const firebaseConfig = {
     ContactPage,
     LoginPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    LocationSelectPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},DataProvider,AuthProvider,ConnectivityService,Geolocation, LocationProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler},DataProvider,AuthProvider,ConnectivityService,Geolocation,LocationProvider,GoogleMapProvider,Network
   ]
 })
 export class AppModule {}

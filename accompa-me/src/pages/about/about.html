@@ -1,14 +1,114 @@
+<!--<ion-header>
+    <ion-navbar>
+        <ion-title>Profile</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="cards-bg social-cards">
+
+    <ion-card>
+
+        <ion-item>
+            <ion-avatar item-start>
+                <img src="assets/img/marty-avatar.png">
+            </ion-avatar>
+            <h2>Marty McFly</h2>
+            <p>November 5, 1955</p>
+        </ion-item>
+
+        <img src="assets/img/advance-card-bttf.png">
+
+        <ion-card-content>
+            <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col>
+                <button ion-button color="primary" clear small icon-left>
+        <ion-icon name='thumbs-up'></ion-icon>
+        12 Likes
+      </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button color="primary" clear small icon-left>
+        <ion-icon name='text'></ion-icon>
+        4 Comments
+      </button>
+            </ion-col>
+            <ion-col align-self-center text-center>
+                <ion-note>
+                    11h ago
+                </ion-note>
+            </ion-col>
+        </ion-row>
+
+    </ion-card>-->
+
+
+
 <ion-header>
     <ion-navbar>
         <ion-title>
-            {{ (items | async)?.name }}
+            <h3>Your Profile</h3>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-    <button ion-button (click)="getdata()">{{ (items | async)?.name }}</button>
+<ion-content class="prof-card">
+    <div>
+        <ion-item>
+            <ion-avatar item-left>
+                <h2>{{ (items | async)?.name }}</h2>
+                <img src="{{ (items | async)?.image }}">
+            </ion-avatar>
+        </ion-item>
+    </div>
+    <ion-grid>
+        <ion-row>
+            <ion-col>
+                <button ion-button color="primary" clear small icon-left>
+        <ion-icon name='thumbs-up'></ion-icon>
+      </button>
+            </ion-col>
+            <ion-col>
+                <button ion-button color="primary" clear small icon-left>
+        <ion-icon name='text'></ion-icon>
+      </button>
+            </ion-col>
+            <ion-col align-self-center text-center>
+                <button ion-button color="primary" clear small icon-left>
+                   <ion-icon name="contacts"></ion-icon>
+               </button>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <hr>
+    <p>Reviews go here</p>
+
+
+    <!--<ion-card>
+        <ion-card-header>
+            {{ (items | async)?.name }}
+        </ion-card-header>
+        <ion-item>
+            ioncardc
+                <img src="../../../resources/android-bg.jpg" />
+    
+            <ion-avatar>
+                <img src={{ (items | async)?.image }}>
+            </ion-avatar>
+
+        </ion-item>
+
+
+
+
+        <ion-card-content>
+
+        </ion-card-content>
+    </ion-card>
+    <!--<button ion-button (click)="getdata()">{{ (items | async)?.name }}</button>
     <button ion-button (click)="changeName()">change Name</button>
     <h1>{{ (users | async)?.name}}</h1>
-    <button ion-button (click)="logout()">logout</button>
+    <button ion-button (click)="logout()">logout</button>-->
 </ion-content>
